@@ -1,0 +1,14 @@
+## YAML Template.
+---
+spring.application.name: Service A
+server.port: 81
+
+springdoc:
+  packages-to-scan: rs.ac.bg.fon.mas.service_a.controller
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+---
+spring.config.activate.on-profile: docker
+server.port: 8080
