@@ -61,7 +61,7 @@ public class A1ControllerImpl implements A1Controller {
         
         A1Dto resA1Dto = new A1Dto(a1Entity);
         
-        return ResponseEntity.status(HttpStatus.OK).body(resA1Dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(resA1Dto);
     }
 
 }
