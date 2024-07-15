@@ -20,7 +20,7 @@ import rs.ac.bg.fon.mas.service_a.repository.A1Repository;
  *
  * @author Predrag
  */
-@SpringBootTest
+@SpringBootTest(properties = {"eureka.client.enabled=false"})
 public class AServiceTest {
     
     @Autowired

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -26,6 +27,7 @@ import rs.ac.bg.fon.mas.service_a.service.A1Service;
  * @author Predrag
  */
 @WebMvcTest(controllers = A1Controller.class)
+@TestPropertySource(properties = {"eureka.client.enabled=false"})
 public class A1ControllerTest {
     @MockBean
     private A1Service a1Service;
