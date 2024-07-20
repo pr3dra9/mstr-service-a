@@ -13,6 +13,7 @@ import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.kafka.test.context.EmbeddedKafka;
 import rs.ac.bg.fon.mas.service_a.domain.A1;
 import rs.ac.bg.fon.mas.service_a.repository.A1Repository;
 
@@ -20,7 +21,8 @@ import rs.ac.bg.fon.mas.service_a.repository.A1Repository;
  *
  * @author Predrag
  */
-@SpringBootTest(properties = {"eureka.client.enabled=false"})
+@SpringBootTest(properties = {"spring.cloud.config.enabled=false", "eureka.client.enabled=false"})
+@EmbeddedKafka
 public class AServiceTest {
     
     @Autowired
