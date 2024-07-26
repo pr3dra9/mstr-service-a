@@ -24,32 +24,41 @@ public class A2StreamConfig {
     
     @Bean
     public Function<A2Dto, A2Dto> transformCreateMessage() {
-        return a2dto -> {
-            A2 a2 = new A2();
-            a2.setName(a2dto.getName());
-            a2.setActive(a2dto.isActive());
-            a2.setCode(a2dto.getCode());
-            A2  entity = service.create(a2);
-            return new A2Dto(entity);
-        };
+        return this::create;
+    }
+    
+    private A2Dto create(A2Dto a2dto) {
+        System.out.println("Transform Create Message - " +
+            String.format("Name: %s, active: %s, code: %s.", a2dto.getName(), a2dto.isActive(), a2dto.getCode()));
+        A2 a2 = new A2();
+        a2.setName(a2dto.getName());
+        a2.setActive(a2dto.isActive());
+        a2.setCode(a2dto.getCode());
+        A2  entity = service.create(a2);
+        return new A2Dto(entity);
     }
     
     @Bean
     public Function<A2Dto, A2Dto> transformUpdateMessage() {
-        return a2dto -> {
-            A2 a2 = new A2();
-            a2.setId(a2dto.getId());
-            a2.setName(a2dto.getName());
-            a2.setActive(a2dto.isActive());
-            a2.setCode(a2dto.getCode());
-            A2  entity = service.update(a2);
-            return new A2Dto(entity);
-        };
+        return a2dto -> update(a2dto);
+    }
+    
+    private A2Dto update(A2Dto a2dto) {
+        System.out.println("Transform Update Message - " +
+            String.format("ID: %s, Name: %s, active: %s, code: %s.",a2dto.getId(), a2dto.getName(), a2dto.isActive(), a2dto.getCode()));
+        A2 a2 = new A2();
+        a2.setId(a2dto.getId());
+        a2.setName(a2dto.getName());
+        a2.setActive(a2dto.isActive());
+        a2.setCode(a2dto.getCode());
+        A2  entity = service.update(a2);
+        return new A2Dto(entity);
     }
     
     @Bean
     public Function<Long, Boolean> transformDeleteMessage() {
         return id -> {
+            System.out.println(String.format("Transform Delete Message - ID: %s.", id));
             return service.delete(id);
         };
     }

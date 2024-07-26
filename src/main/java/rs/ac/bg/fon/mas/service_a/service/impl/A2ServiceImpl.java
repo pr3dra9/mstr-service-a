@@ -37,10 +37,7 @@ public class A2ServiceImpl implements A2Service {
 
     @Override
     public A2 findById(Long id) {
-        Optional<A2> opt = repo.findById(id);
-        if (opt.isEmpty())
-            return null;
-        return opt.get();
+        return repo.findById(id).orElse(null);
     }
 
     @Override
